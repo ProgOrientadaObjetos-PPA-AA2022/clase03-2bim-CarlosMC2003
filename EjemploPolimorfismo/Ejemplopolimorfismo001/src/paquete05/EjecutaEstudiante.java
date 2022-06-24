@@ -1,4 +1,3 @@
-
 package paquete05;
 
 import java.util.ArrayList;
@@ -13,7 +12,7 @@ public class EjecutaEstudiante {
         de docentes. 
         El usuario decide cuando terminar el proceso
         
-        */
+         */
         Scanner entrada = new Scanner(System.in);
         String nombresEst;
         String apellidosEst;
@@ -24,17 +23,17 @@ public class EjecutaEstudiante {
         double costoAsig;
         int numeroAsigs;
         int tipoEstudiante;
-        String continuar;
-        int contador = 0;
         ArrayList<Estudiante> estudiantes = new ArrayList<>();
-       
+
         // inicio de solución
         boolean bandera = true;
-        
+
         while (bandera) {
+            //PROCESO PARA CONOCER QUE TIPO DE ESTUDIANTE QUIERE
+            //INGRESAR EL USUARIO
             System.out.println("Tipo de Estudiante a ingresar\n"
                     + "Ingrese (1) para Estudiante Presencial"
-                    + "Ingrese (2) para Estudiante Distancia");
+                    + "\nIngrese (2) para Estudiante Distancia");
             tipoEstudiante = entrada.nextInt();
             entrada.nextLine();
 
@@ -49,67 +48,76 @@ public class EjecutaEstudiante {
 
             if (tipoEstudiante == 1) {
 
-                // Declarar,crear e iniciar objeto tipo EstudiantePresencial
                 EstudiantePresencial estudianteP = new EstudiantePresencial();
-                // Solicitar ingreso de valores para variables 
-                // Solicitar numeroCreds, costoCred
-                // Leer numeroCreds, costoCred
+                
+                //PROCESO PARA LLENAR LOS METODOS CORRESPONDIENTES DE ESTUDIANTES PRESENCIAL
                 System.out.println("Ingrese el número de créditos");
                 numeroCreds = entrada.nextInt();
                 System.out.println("Ingrese el costo de cada créditos");
                 costoCred = entrada.nextDouble();
-                // se hace uso de los métodos establecer para asignar valores
-                // a los datos (atributos) del objeto
+                entrada.nextLine();
+                
+                // Mediante los metodos establecer se designan los debidos atributos
+                // que necesita el objeto estudiantes
                 estudianteP.establecerNombresEstudiante(nombresEst);
                 estudianteP.establecerApellidoEstudiante(apellidosEst);
                 estudianteP.establecerIdentificacionEstudiante(identificacionEst);
                 estudianteP.establecerEdadEstudiante(edadEst);
                 estudianteP.establecerNumeroCreditos(numeroCreds);
                 estudianteP.establecerCostoCredito(costoCred);
-                estudiantes.add = estudianteP;
-                
-            } else {
-                // Si el usuario ingresa un número diferente del valor 1 para 
-                // tipoEstudiante se procede a crear los procesos necesarios para 
-                // crear un objeto de tipo EstudianteDistancia
-                
-                    // Declarar,crear e iniciar objeto tipo EstudianteDistancia
-                    EstudianteDistancia estudianteD = new EstudianteDistancia();
-                    // Solicitar ingreso de valores para variables 
-                    // Solicitar numeroAsigs, costoAsig 
-                    // Leer numeroAsigs, costoAsig
-                    System.out.println("Ingrese el número de asignaturas");
-                    numeroAsigs = entrada.nextInt();
-                    System.out.println("Ingrese el costo de cada cada asignatura");
-                    costoAsig = entrada.nextDouble();
+                estudiantes.add(estudianteP);
 
-                    // se hace uso de los métodos establecer para asignar valores
-                    // a los datos (atributos) del objeto
-                    estudianteD.establecerNombresEstudiante(nombresEst);
-                    estudianteD.establecerApellidoEstudiante(apellidosEst);
-                    estudianteD.establecerIdentificacionEstudiante(identificacionEst);
-                    estudianteD.establecerEdadEstudiante(edadEst);
-                    estudianteD.establecerNumeroAsginaturas(numeroAsigs);
-                    estudianteD.establecerCostoAsignatura(costoAsig);
-                    
-                    // Se agrega al arreglo estudiantes un objeto de tipo
-                    // EstudianteDistancia
-                    estudiantes.add = estudianteD;
+            } else {
+
+
+                // SE DECLARA Y SE INICIALIZA EL OBJETO DE TTIPO ESTUDIANTEDISTANCIA
+                EstudianteDistancia estudianteD = new EstudianteDistancia();
+                
+                //PROCESO PARA LLENAR LOS METODOS CORRESPONDIENTES DE ESTUDIANTES A DISTANCIA
+                System.out.println("Ingrese el número de asignaturas");
+                numeroAsigs = entrada.nextInt();
+                System.out.println("Ingrese el costo de cada cada asignatura");
+                costoAsig = entrada.nextDouble();
+                entrada.nextLine();
+
+                // Mediante los metodos establecer se designan los debidos atributos
+                // que necesita el objeto estudiantes
+                estudianteD.establecerNombresEstudiante(nombresEst);
+                estudianteD.establecerApellidoEstudiante(apellidosEst);
+                estudianteD.establecerIdentificacionEstudiante(identificacionEst);
+                estudianteD.establecerEdadEstudiante(edadEst);
+                estudianteD.establecerNumeroAsginaturas(numeroAsigs);
+                estudianteD.establecerCostoAsignatura(costoAsig);
+
+                // SE AGREGA A LA LISTA DE TIPO ARRAYLIST UN OBJETO DE TIPO ESTUDIANTE
+                // LO QUE SERIA SU SUBCLASE ESTUDIANTE DISTANCIA
+                estudiantes.add(estudianteD);
+            }
+            
+            //PROCESO QUE PERMITE SABER SI EL USUARIO YA QUIERE SALIR DEL PROGRAMA
+            System.out.print("\nSi No Desea seguir Agregando Más Estudiantes ¡Pulse La tecla X!: ");
+            String seguir = entrada.nextLine();
+            System.out.println("");
+            
+            if (seguir.equals("X") || seguir.equals("x")) {
+                bandera = false;
+            }
         }
-        
-        
-        
+
         // ciclo que permite comprobar el polimorfismo
         // este código no debe ser modificado.
         for (int i = 0; i < estudiantes.size(); i++) {
             // 1.  
             estudiantes.get(i).calcularMatricula();
-            
-            System.out.printf("Datos Estudiante\n"
-                        + "%s\n",                        
-                  estudiantes.get(i));
-            
-        }
-    }
 
+            System.out.printf("Datos Estudiante\n"
+                    + "%s\n",
+                    estudiantes.get(i));
+
+        }
+
+    
+    }
+    
 }
+    
