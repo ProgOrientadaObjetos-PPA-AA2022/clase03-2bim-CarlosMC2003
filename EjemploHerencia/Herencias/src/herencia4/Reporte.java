@@ -11,4 +11,16 @@ package herencia4;
  */
 public class Reporte {
    protected String codigo;
+   
+   public Reporte(String cod) {
+       codigo = cod;
+   }
+   
+   public void establecerCodigo(String n) {
+       codigo = n;
+   }
+   
+   public String obtenerCodigo() {
+       return codigo;
+   }
 }
